@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-glibc:alpine-3.3
+FROM alpine/glibc:edge
 
 ENV JAVA_VERSION=8 \
     JAVA_UPDATE=65 \
@@ -7,8 +7,6 @@ ENV JAVA_VERSION=8 \
 
 # Install cURL
 RUN apk add --no-cache --virtual=build-dependencies --update curl ca-certificates tar && \
-    curl -Ls https://circle-artifacts.com/gh/andyshinn/alpine-pkg-glibc/6/artifacts/0/home/ubuntu/alpine-pkg-glibc/packages/x86_64/glibc-2.21-r2.apk > /tmp/glibc-2.21-r2.apk && \
-    apk add --allow-untrusted /tmp/glibc-2.21-r2.apk && \
     cd "/tmp" && \
     mkdir -p "/usr/lib/jvm" && \
     curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie;" "http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}u${JAVA_UPDATE}-b${JAVA_BUILD}/jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" | \
@@ -52,10 +50,5 @@ RUN apk add --no-cache --virtual=build-dependencies --update curl ca-certificate
            "$JAVA_HOME/jre/lib/oblique-fonts" && \
     apk del build-dependencies && \
     rm "/tmp/"*
-
-
-#FROM gliderlabs/alpine:3.3.1
-#RUN apk-install mysql-client
-#ENTRYPOINT ["mysql"]
 
 

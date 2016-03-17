@@ -49,6 +49,6 @@ RUN apk add --no-cache --virtual=build-dependencies --update curl ca-certificate
            "$JAVA_HOME/jre/lib/jfr" \
            "$JAVA_HOME/jre/lib/oblique-fonts" && \
     apk del build-dependencies && \
-    rm "/tmp/"*
+    (rm "/tmp/"* || true) && (rm -rf /var/cache/apk/* || true)
 
 

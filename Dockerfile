@@ -1,4 +1,4 @@
-FROM alpine/glibc:edge
+FROM jeanblanchard/alpine-glibc
 
 ENV JAVA_VERSION=8 \
     JAVA_UPDATE=65 \
